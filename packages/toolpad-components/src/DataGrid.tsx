@@ -328,6 +328,7 @@ interface Selection {
 }
 
 interface ToolpadDataGridProps extends Omit<DataGridProProps, 'columns' | 'rows' | 'error'> {
+  dataSource: 'companies' | 'users';
   rows?: GridRowsProp;
   columns?: SerializableGridColumns;
   height?: number;
@@ -340,6 +341,7 @@ interface ToolpadDataGridProps extends Omit<DataGridProProps, 'columns' | 'rows'
 
 const DataGridComponent = React.forwardRef(function DataGridComponent(
   {
+    dataSource: dataSourceProp,
     columns: columnsProp,
     rows: rowsProp,
     height: heightProp,
@@ -398,7 +400,44 @@ const DataGridComponent = React.forwardRef(function DataGridComponent(
   );
   React.useEffect(() => handleColumnOrderChange.clear(), [handleColumnOrderChange]);
 
-  const rowsInput = rowsProp || EMPTY_ROWS;
+  // const rowsInput = rowsProp || EMPTY_ROWS;
+  const rowsInput = dataSourceProp === 'companies'
+      ? [
+        {
+          company: "Amazon",
+          id: "Amazon"
+        },
+        {
+          company: "Tesla",
+          id: "Tesla"
+        },
+        {
+          company: "Apple",
+          id: "Apple"
+        },
+      ]
+      : [
+        {
+          name: "Miko",
+          id: "Miko"
+        },
+        {
+          name: "Kenshi",
+          id: "Kenshi"
+        },
+        {
+          name: "Light",
+          id: "Light"
+        },
+      ]
+
+  columnsProp = dataSourceProp === 'companies'
+      ? [
+        { field: 'company', headerName: 'Company' }
+      ]
+      : [
+        { field: 'name', headerName: 'Name' }
+      ]
 
   const hasExplicitRowId: boolean = React.useMemo(() => {
     const hasRowIdField: boolean = !!(rowIdFieldProp && rowIdFieldProp !== 'id');
@@ -512,45 +551,52 @@ export default createComponent(DataGridComponent, {
   loadingProp: 'loading',
   resizableHeightProp: 'height',
   argTypes: {
-    rows: {
-      helperText: 'The data to be displayed as rows. Must be an array of objects.',
-      type: 'array',
-      schema: {
-        type: 'array',
-        items: {
-          type: 'object',
-          additionalProperties: true,
-          properties: {
-            id: {
-              type: 'string',
-            },
-          },
-          required: ['id'],
-        },
-      },
+    dataSource: {
+      helperText:
+          'Data source',
+      type: 'string',
+      enum: ['companies', 'users'],
+      default: 'companies',
     },
-    columns: {
-      helperText: 'The columns to be displayed.',
-      type: 'array',
-      schema: {
-        type: 'array',
-        items: {
-          type: 'object',
-          additionalProperties: true,
-          properties: {
-            field: {
-              type: 'string',
-            },
-            align: {
-              type: 'string',
-              enum: ['center', 'right', 'left'],
-            },
-          },
-          required: ['field'],
-        },
-      },
-      control: { type: 'GridColumns', bindable: false },
-    },
+    // rows: {
+    //   helperText: 'The data to be displayed as rows. Must be an array of objects.',
+    //   type: 'array',
+    //   schema: {
+    //     type: 'array',
+    //     items: {
+    //       type: 'object',
+    //       additionalProperties: true,
+    //       properties: {
+    //         id: {
+    //           type: 'string',
+    //         },
+    //       },
+    //       required: ['id'],
+    //     },
+    //   },
+    // },
+    // columns: {
+    //   helperText: 'The columns to be displayed.',
+    //   type: 'array',
+    //   schema: {
+    //     type: 'array',
+    //     items: {
+    //       type: 'object',
+    //       additionalProperties: true,
+    //       properties: {
+    //         field: {
+    //           type: 'string',
+    //         },
+    //         align: {
+    //           type: 'string',
+    //           enum: ['center', 'right', 'left'],
+    //         },
+    //       },
+    //       required: ['field'],
+    //     },
+    //   },
+    //   control: { type: 'GridColumns', bindable: false },
+    // },
     rowIdField: {
       helperText:
         'Defines which column contains the [id](https://mui.com/x/react-data-grid/row-definition/#row-identifier) that uniquely identifies each row.',

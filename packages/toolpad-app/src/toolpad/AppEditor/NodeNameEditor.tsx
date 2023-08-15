@@ -1,4 +1,4 @@
-import { SxProps, TextField } from '@mui/material';
+import {SxProps, TextField, FormControl, InputLabel, Typography} from '@mui/material';
 import * as React from 'react';
 import * as appDom from '../../appDom';
 import { useDom, useDomApi } from '../AppState';
@@ -49,17 +49,28 @@ export default function NodeNameEditor({ node, sx }: NodeNameEditorProps) {
     [handleNameCommit],
   );
 
+
   return (
-    <TextField
-      sx={sx}
-      fullWidth
-      label="Node name"
-      error={!isNameValid}
-      helperText={nodeNameError}
-      value={nameInput}
-      onChange={handleNameInputChange}
-      onBlur={handleNameCommit}
-      onKeyPress={handleKeyPress}
-    />
+      <FormControl sx={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+      }}>
+        <Typography variant="body2" sx={{
+          // fontSize: 11,
+          width: 200,
+          // flexSize
+        }}>Node name</Typography>
+        <TextField
+            sx={sx}
+            error={!isNameValid}
+            helperText={nodeNameError}
+            value={nameInput}
+            onChange={handleNameInputChange}
+            onBlur={handleNameCommit}
+            onKeyPress={handleKeyPress}
+        />
+      </FormControl>
   );
 }

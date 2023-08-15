@@ -8,21 +8,46 @@ spec:
       name: pageRow
       children:
         - component: TextField
-          name: input
+          name: Test
           props:
             fullWidth: true
-            label: Encoded text
+            label: Test
             defaultValue: Hello world!
     - component: PageRow
-      name: pageRow1
+      name: pageRow7
       children:
-        - component: Image
-          name: qrcodeDisplay
+        - component: Button
+          name: button1
+    - component: PageRow
+      name: pageRow5
+      children:
+        - component: DataGrid
+          name: dataGrid
           props:
-            src:
-              $$jsExpression: |
-                qrImage.data
-            fit: none
+            rows:
+              - test: 1
+            columns:
+              - field: company
+                type: string
+              - field: id
+                type: string
+            rowIdField: test
+            density: compact
+            dataSource: companies
+    - component: PageRow
+      name: pageRow3
+      children:
+        - component: Text
+          name: Hi
+          props:
+            value: How it's going?
+    - component: PageRow
+      name: pageRow2
+      children:
+        - component: Button
+          name: button
+          layout:
+            horizontalAlign: start
   queries:
     - name: qrImage
       query:

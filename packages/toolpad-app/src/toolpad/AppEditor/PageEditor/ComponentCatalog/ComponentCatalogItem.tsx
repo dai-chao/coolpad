@@ -106,33 +106,37 @@ function ComponentCatalogItem({
       onDragStart={onDragStart}
       component={ButtonBase}
       sx={{
+          fontFamily: 'inherit',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        width: builtIn ? 65 : 60,
-        height: builtIn ? 65 : 60,
-        padding: 1,
-        borderRadius: 1,
-        border: 1,
-        borderColor: 'divider',
-        borderStyle: kind === 'create' ? 'dashed' : 'solid',
         color: 'text.secondary',
         backgroundColor: 'paper',
         // https://stackoverflow.com/q/22922761
         transform: 'translate(0, 0)',
-        '&:hover': {
-          backgroundColor: 'action.hover',
-        },
+        // '&:hover': {
+        //   backgroundColor: 'action.hover',
+        // },
         ...(draggable ? { cursor: 'grab' } : {}),
         ...(onClick ? { cursor: 'pointer' } : {}),
       }}
     >
-      <ComponentIcon id={id} kind={kind} />
+      <ComponentIcon id={id} kind={kind} sx={{
+          backgroundColor: '#15dd15',
+          p: 0.5,
+          borderRadius: 1,
+          width: 30,
+          height: 30,
+          color: 'white',
+
+      }} />
       <span
         style={{
-          fontSize: '0.625rem',
-          maxWidth: builtIn ? 65 : 60,
+            marginTop: 2,
+            fontWeight: 400,
+          fontSize: '0.7rem',
+          // maxWidth: builtIn ? 65 : 60,
           whiteSpace: 'nowrap',
           opacity: kind === 'future' ? 0.75 : 1,
           textOverflow: 'ellipsis',

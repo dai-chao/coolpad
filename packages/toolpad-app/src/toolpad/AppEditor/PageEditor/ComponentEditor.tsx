@@ -38,6 +38,7 @@ const ComponentEditorRoot = styled('div')(({ theme }) => ({
   },
   [`& .${classes.sectionHeading}`]: {
     margin: theme.spacing(0, 0, -0.5, 0),
+    fontWeight: 'bold',
   },
 }));
 
@@ -180,7 +181,10 @@ function SelectedNodeEditor({ node }: SelectedNodeEditorProps) {
   return (
     <ElementContext.Provider value={node}>
       <Stack direction="column" gap={1}>
-        <MarkdownTooltip placement="left" title={componentConfig.helperText ?? displayName}>
+        <MarkdownTooltip placement="left" title={componentConfig.helperText ?? displayName} sx={{
+          fontSize: 12,
+          fontWeight: 800,
+        }}>
           <Typography variant="subtitle1">Component: {displayName}</Typography>
         </MarkdownTooltip>
         <NodeNameEditor node={node} />

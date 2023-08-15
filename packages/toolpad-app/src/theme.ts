@@ -1,6 +1,8 @@
 import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
 import { tooltipClasses } from '@mui/material';
 import { createTheme, ThemeOptions, Theme, alpha } from '@mui/material/styles';
+// import "@fontsource/inter";
+import "@fontsource-variable/inter";
 
 declare module '@mui/material/styles/createPalette' {
   interface ColorRange {
@@ -57,8 +59,8 @@ const blue = {
   100: '#C2E0FF',
   200: '#99CCF3',
   300: '#66B2FF',
-  400: '#3399FF',
-  main: '#007FFF',
+  400: 'rgb(84, 92, 247)',
+  main: 'rgb(84, 92, 247)',
   500: '#007FFF',
   600: '#0072E5', // vs blueDark 900: WCAG 4.6 AAA (large), APCA 36 Not for reading text
   700: '#0059B2',
@@ -118,9 +120,9 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
     palette: {
       primary: {
         ...blue,
-        ...(mode === 'dark' && {
-          main: blue[400],
-        }),
+        // ...(mode === 'dark' && {
+        //   main: blue[400],
+        // }),
       },
       divider: mode === 'dark' ? alpha(blue[100], 0.08) : grey[100],
       primaryDark: blueDark,
@@ -135,9 +137,10 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         black: '#1D1D1D',
       },
       text: {
+        fontWeight: 400,
         ...(mode === 'light' && {
           primary: grey[900],
-          secondary: grey[700],
+          secondary: grey[900],
         }),
         ...(mode === 'dark' && {
           primary: '#fff',
@@ -204,7 +207,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
     },
     spacing: 10,
     typography: {
-      fontFamily: ['"IBM Plex Sans"', ...systemFont].join(','),
+      fontFamily: ['"Inter Variable"', ...systemFont].join(','),
       fontFamilyCode: [
         'Consolas',
         'Menlo',
@@ -258,7 +261,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       },
       button: {
         textTransform: 'initial',
-        fontWeight: 700,
+        fontWeight: 400,
         letterSpacing: 0,
       },
       subtitle1: {
@@ -292,10 +295,22 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
 export function getThemedComponents(theme: Theme): { components: Theme['components'] } {
   return {
     components: {
+      // MuiTreeItem: {
+      //   styleOverrides: {
+      //
+      //   }
+      // },
       MuiButtonBase: {
         defaultProps: {
           disableTouchRipple: true,
         },
+        styleOverrides: {
+          root: {
+            '&.Mui-selected': {
+              fontWeight: 700,
+            },
+          }
+        }
       },
       MuiButton: {
         defaultProps: {
@@ -402,7 +417,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
               color:
                 theme.palette.mode === 'dark'
                   ? theme.palette.primary[300]
-                  : theme.palette.primary[500],
+                  : theme.palette.primary[400],
               '&:hover': {
                 borderColor:
                   theme.palette.mode === 'dark'
@@ -448,7 +463,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
                     : theme.palette.grey[50],
               },
               '&.Mui-selected': {
-                fontWeight: 500,
+                fontWeight: 900,
                 color:
                   theme.palette.mode === 'dark'
                     ? theme.palette.primary[300]
@@ -626,6 +641,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
                   : theme.palette.grey[50],
             },
             '&.Mui-selected': {
+              fontWeight: 900,
               color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[500],
               borderRadius: 10,
               border: '1px solid',
@@ -734,6 +750,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
                 ? theme.palette.primaryDark[500]
                 : theme.palette.grey[200],
             '&.Mui-selected': {
+              fontWeight: 900,
               color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[500],
               borderColor:
                 theme.palette.mode === 'dark'
@@ -807,6 +824,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
                 ? theme.palette.primaryDark[500]
                 : theme.palette.grey[200],
             '&.Mui-selected': {
+              fontWeight: 900,
               color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[500],
               borderColor:
                 theme.palette.mode === 'dark'
@@ -836,6 +854,11 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
           size: 'small',
           margin: 'dense',
         },
+        styleOverrides: {
+          root: {
+            // marginTop: 0,
+          }
+        }
       },
       MuiCheckbox: {
         defaultProps: {
@@ -908,6 +931,14 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
       MuiOutlinedInput: {
         defaultProps: {
           margin: 'dense',
+        },
+        styleOverrides: {
+          root: {
+            backgroundColor: '#F2F2F2',
+          },
+          notchedOutline: {
+            border: 'none',
+          }
         },
       },
       MuiFab: {

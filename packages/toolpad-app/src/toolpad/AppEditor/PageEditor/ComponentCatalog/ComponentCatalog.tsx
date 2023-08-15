@@ -11,6 +11,7 @@ import { useDom } from '../../../AppState';
 import { usePageEditorApi } from '../PageEditorProvider';
 import { useToolpadComponents } from '../../toolpadComponents';
 import useLocalStorageState from '../../../../utils/useLocalStorageState';
+import { CustomContext, CustomDispatchContext } from '../../../CustomContext';
 
 interface FutureComponentSpec {
   url: string;
@@ -48,7 +49,14 @@ export default function ComponentCatalog({ className }: ComponentCatalogProps) {
   const api = usePageEditorApi();
   const { dom } = useDom();
 
+  const state = React.useContext(CustomContext);
+
   const [openStart, setOpenStart] = React.useState(0);
+
+    React.useEffect(() => {
+        setOpenStart(state?.componentsOpen === true ? Date.now() : 0)
+    }, [state?.componentsOpen])
+
   const [openCustomComponents, setOpenCustomComponents] = useLocalStorageState(
     'catalog-custom-expanded',
     true,
@@ -68,6 +76,7 @@ export default function ComponentCatalog({ className }: ComponentCatalogProps) {
 
   const closeDrawer = React.useCallback(
     (delay?: number) => {
+        return;
       const timeOpen = Date.now() - openStart;
       const defaultDelay = timeOpen > 750 ? 500 : 0;
       closeTimeoutRef.current = setTimeout(() => setOpenStart(0), delay ?? defaultDelay);
@@ -84,8 +93,8 @@ export default function ComponentCatalog({ className }: ComponentCatalogProps) {
 
   const toolpadComponents = useToolpadComponents(dom);
 
-  const handleMouseEnter = React.useCallback(() => openDrawer(), [openDrawer]);
-  const handleMouseLeave = React.useCallback(() => closeDrawer(), [closeDrawer]);
+  // const handleMouseEnter = React.useCallback(() => openDrawer(), [openDrawer]);
+  // const handleMouseLeave = React.useCallback(() => closeDrawer(), [closeDrawer]);
 
   const [createCodeComponentDialogOpen, setCreateCodeComponentDialogOpen] = React.useState(false);
 
@@ -103,8 +112,8 @@ export default function ComponentCatalog({ className }: ComponentCatalogProps) {
       <ComponentCatalogRoot
         data-testid="component-catalog"
         className={className}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+        // onMouseEnter={handleMouseEnter}
+        // onMouseLeave={handleMouseLeave}
       >
         <Box
           sx={{
@@ -132,7 +141,10 @@ export default function ComponentCatalog({ className }: ComponentCatalogProps) {
                 scrollbarGutter: 'stable',
               }}
             >
-              <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap={1} padding={1}>
+                <Typography variant="h2" sx={{ p: 1, fontSize: 19, pt: 2, textAlign: 'center' }}>
+                    Insert Component
+                </Typography>
+                <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap={2} padding={1}>
                 {Object.entries(toolpadComponents).map(([componentId, componentType]) => {
                   invariant(componentType, `No component definition found for "${componentId}"`);
                   return componentType.builtIn && !componentType.system ? (
@@ -196,92 +208,34 @@ export default function ComponentCatalog({ className }: ComponentCatalogProps) {
                   />
                 </Box>
               </Collapse>
-
-              <Box padding={1}>
-                <Box
-                  sx={(theme) => ({
-                    py: 2,
-                    pl: 1,
-                    pr: 0.5,
-                    borderWidth: 1,
-                    borderStyle: 'solid',
-                    borderRadius: 1,
-                    backgroundColor: darken(theme.palette.background.default, 0.1),
-                    borderColor: theme.palette.divider,
-                  })}
-                >
-                  <Box pb={0} display="flex" flexDirection={'row'} justifyContent="space-between">
-                    <Typography variant="body2" color="text.secondary">
-                      More components coming soon!
-                    </Typography>
-                    <IconButton
-                      aria-label="Expand custom components"
-                      sx={{
-                        p: 0,
-                        height: '100%',
-                        alignSelf: 'start',
-                        cursor: 'pointer',
-                        transform: `rotate(${openFutureComponents ? 180 : 0}deg)`,
-                        transition: 'all 0.2s ease-in',
-                      }}
-                      onClick={() => setOpenFutureComponents((prev) => !prev)}
-                    >
-                      <ArrowDropDownSharpIcon />
-                    </IconButton>
-                  </Box>
-                  <Collapse in={openFutureComponents} orientation={'vertical'}>
-                    <Typography variant="caption" color="text.secondary">
-                      👍 Upvote on GitHub to get it prioritized.
-                    </Typography>
-                    <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap={1} pt={1} pb={0}>
-                      {Array.from(FUTURE_COMPONENTS, ([key, { displayName, url }]) => {
-                        return (
-                          <Link
-                            href={url}
-                            underline="none"
-                            target="_blank"
-                            key={`futureComponent.${key}`}
-                          >
-                            <ComponentCatalogItem
-                              id={key}
-                              displayName={displayName}
-                              kind={'future'}
-                            />
-                          </Link>
-                        );
-                      })}
-                    </Box>
-                  </Collapse>
-                </Box>
-              </Box>
             </Box>
           </Collapse>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              width: WIDTH_COLLAPSED,
-            }}
-          >
-            <Box sx={{ mt: 2 }}>{openStart ? <ArrowLeftIcon /> : <ArrowRightIcon />}</Box>
-            <Box position="relative">
-              <Typography
-                sx={{
-                  position: 'absolute',
-                  top: 0,
-                  display: 'flex',
-                  alignItems: 'center',
-                  fontSize: 20,
-                  transform: 'rotate(90deg) translate(-10px, 0)',
-                  transformOrigin: '0 50%',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                Component library
-              </Typography>
-            </Box>
-          </Box>
+          {/*<Box*/}
+          {/*  sx={{*/}
+          {/*    display: 'flex',*/}
+          {/*    flexDirection: 'column',*/}
+          {/*    alignItems: 'center',*/}
+          {/*    width: WIDTH_COLLAPSED,*/}
+          {/*  }}*/}
+          {/*>*/}
+          {/*  <Box sx={{ mt: 2 }}>{openStart ? <ArrowLeftIcon /> : <ArrowRightIcon />}</Box>*/}
+          {/*  <Box position="relative">*/}
+          {/*    <Typography*/}
+          {/*      sx={{*/}
+          {/*        position: 'absolute',*/}
+          {/*        top: 0,*/}
+          {/*        display: 'flex',*/}
+          {/*        alignItems: 'center',*/}
+          {/*        fontSize: 20,*/}
+          {/*        transform: 'rotate(90deg) translate(-10px, 0)',*/}
+          {/*        transformOrigin: '0 50%',*/}
+          {/*        whiteSpace: 'nowrap',*/}
+          {/*      }}*/}
+          {/*    >*/}
+          {/*      Component library*/}
+          {/*    </Typography>*/}
+          {/*  </Box>*/}
+          {/*</Box>*/}
         </Box>
       </ComponentCatalogRoot>
       <CreateCodeComponentNodeDialog

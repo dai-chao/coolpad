@@ -50,23 +50,23 @@ function Header({ actions, status, enableUserFeedback = true }: HeaderProps) {
                 underline="none"
                 sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1 }}
               >
-                <img src={productIcon} alt="Toolpad product icon" width={25} height={25} />
+                {/*<img src={productIcon} alt="Toolpad product icon" width={25} height={25} />*/}
                 <Box
                   data-testid="brand"
                   sx={{
                     color: 'primary.main',
-                    lineHeight: '21px',
-                    fontSize: '16px',
-                    fontWeight: 700,
-                    letterSpacing: 0,
-                    fontFamily: theme.typography.fontFamily,
+                    // lineHeight: '21px',
+                    fontSize: '18px',
+                    fontWeight: 900,
+                    // letterSpacing: 0,
+                    // fontFamily: theme.typography.fontFamily,
                   }}
                 >
-                  MUI Toolpad
+                  CoolPad
                 </Box>
               </Link>
             </Tooltip>
-            <Chip sx={{ ml: 1 }} label="Beta" size="small" color="grey" />
+            {/*<Chip sx={{ ml: 1 }} label="Beta" size="small" color="grey" />*/}
           </Box>
           <Box
             sx={{

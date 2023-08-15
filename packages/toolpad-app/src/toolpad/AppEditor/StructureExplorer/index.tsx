@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { NodeId } from '@mui/toolpad-core';
-import { Box, Typography } from '@mui/material';
+import {Box, IconButton, Typography} from '@mui/material';
 import TreeView from '@mui/lab/TreeView';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -16,6 +16,9 @@ import {
 } from '../../../runtime/toolpadComponents';
 import { DomView } from '../../../utils/domView';
 import { removePageLayoutNode } from '../pageLayout';
+import AddIcon from "@mui/icons-material/Add";
+import CloseIcon from "@mui/icons-material/Close";
+import { CustomContext, CustomDispatchContext } from '../../CustomContext';
 
 function CustomTreeItem(
   props: TreeItemProps & {
@@ -146,6 +149,9 @@ function RecursiveSubTree({ dom, root }: { dom: appDom.AppDom; root: appDom.Elem
 }
 
 export default function PageStructureExplorer() {
+    const state = React.useContext(CustomContext);
+    const dispatch = React.useContext(CustomDispatchContext);
+
   const { dom } = useDom();
   const { currentView } = useAppState();
   const appStateApi = useAppStateApi();
@@ -229,17 +235,35 @@ export default function PageStructureExplorer() {
 
   return (
     <React.Fragment>
-      <Typography
-        variant="body2"
-        sx={(theme) => ({
-          flexGrow: 1,
-          fontWeight: theme.typography.fontWeightLight,
-          mx: 1,
-          my: 0.5,
-        })}
-      >
-        Page hierarchy
-      </Typography>
+        <Box sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+        }}>
+            <Typography
+                variant="body2"
+                sx={(theme) => ({
+                    flexGrow: 1,
+                    fontWeight: 600,
+                    fontSize: 11,
+                    mx: 1,
+                    my: 0.5,
+                })}
+            >
+                COMPONENTS
+            </Typography>
+            <IconButton size="medium" onClick={() => {
+                dispatch({
+                    type: 'components:toggle',
+                })
+            }}>
+                {state.componentsOpen
+                    ? <CloseIcon fontSize="inherit" />
+                    : <AddIcon fontSize="inherit" />
+                }
+            </IconButton>
+        </Box>
       <TreeView
         aria-label="page hierarchy explorer"
         defaultCollapseIcon={<ExpandMoreIcon sx={{ fontSize: '0.9rem', opacity: 0.5 }} />}

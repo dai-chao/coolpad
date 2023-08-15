@@ -28,6 +28,9 @@ const classes = {
 };
 
 const StyledTreeItem = styled(TreeItem)({
+  ["& .MuiTreeItem-content"]: {
+    borderRadius: 8,
+  },
   [`& .${classes.treeItemMenuButton}`]: {
     visibility: 'hidden',
   },
@@ -70,7 +73,7 @@ function HierarchyTreeItem(props: StyledTreeItemProps) {
       label={
         <Box sx={{ display: 'flex', alignItems: 'center', p: 0.1, pr: 0 }}>
           {labelIcon}
-          <Typography variant="body2" sx={{ fontWeight: 'inherit', flexGrow: 1 }} noWrap>
+          <Typography variant="body2" sx={{ fontWeight: '600', flexGrow: 1, fontSize: 11 }} noWrap>
             {labelText}
           </Typography>
           {onCreate ? (
@@ -237,11 +240,12 @@ export default function HierarchyExplorer({ className }: HierarchyExplorerProps)
         multiSelect
         defaultCollapseIcon={<ExpandMoreIcon sx={{ fontSize: '0.9rem', opacity: 0.5 }} />}
         defaultExpandIcon={<ChevronRightIcon sx={{ fontSize: '0.9rem', opacity: 0.5 }} />}
+        sx={{ p: 1 }}
       >
         <HierarchyTreeItem
           nodeId=":pages"
           aria-level={1}
-          labelText="Pages"
+          labelText="NAVIGATOR"
           createLabelText="Create page"
           onCreate={handleCreatePageDialogOpen}
         >
@@ -254,6 +258,7 @@ export default function HierarchyExplorer({ className }: HierarchyExplorerProps)
               labelText={page.name}
               onDuplicateNode={handleDuplicateNode}
               onDeleteNode={handleDeletePage}
+              sx={{ mr: 0 }}
             />
           ))}
         </HierarchyTreeItem>

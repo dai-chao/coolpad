@@ -6,6 +6,7 @@ import DomProvider, { useAppState } from '../AppState';
 import AppEditorShell from './AppEditorShell';
 import NoPageFound from './NoPageFound';
 import { getPathnameFromView } from '../../utils/domView';
+import { CustomContext, CustomDispatchContext, getInitialState, customReducer } from '../CustomContext';
 
 const classes = {
   content: 'Toolpad_Content',
@@ -35,8 +36,10 @@ const EditorRoot = styled('div')(({ theme }) => ({
   },
 }));
 
+
 function FileEditor() {
   const { currentView } = useAppState();
+  const [state, dispatch] = React.useReducer(customReducer, getInitialState());
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -61,7 +64,13 @@ function FileEditor() {
     }
   }, [currentView.kind, currentView.nodeId]);
 
-  return <AppEditorShell>{currentViewContent}</AppEditorShell>;
+  return (
+      <CustomContext.Provider value={state}>
+        <CustomDispatchContext.Provider value={dispatch}>
+          <AppEditorShell>{currentViewContent}</AppEditorShell>;
+        </CustomDispatchContext.Provider>
+      </CustomContext.Provider>
+  )
 }
 
 export default function Editor() {
