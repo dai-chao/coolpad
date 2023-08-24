@@ -77,30 +77,29 @@ export default function UrlQueryEditor({ pageNodeId }: UrlQueryEditorProps) {
   return (
     <React.Fragment>
       <Button color="inherit" startIcon={<AddIcon />} onClick={handleButtonClick}>
-        Add page parameters
+        新增页面参数
       </Button>
       <Dialog fullWidth open={isDialogOpen} onClose={handleCloseWithUnsavedChanges}>
-        <DialogTitle>Edit page parameters</DialogTitle>
+        <DialogTitle>编辑页面参数</DialogTitle>
         <DialogContent>
           <Typography>
-            The parameters you define below will be made available in bindings under the{' '}
-            <code>page.parameters</code> global variable. You can set these parameters in the url
-            with query variables (<code>?param=value</code>).
+            您在下面定义的参数将在{' '}
+            <code>page.parameters</code> 全局变量。您可以在url中设置这些参数带有查询变量 (<code>?param=value</code>).
           </Typography>
           <MapEntriesEditor
             sx={{ my: 3 }}
-            fieldLabel="Parameter"
-            valueLabel="Default value"
+            fieldLabel="参数"
+            valueLabel="默认值"
             value={input || []}
             onChange={setInput}
           />
         </DialogContent>
         <DialogActions>
           <Button color="inherit" variant="text" onClick={handleDialogClose}>
-            Close
+            关闭
           </Button>
           <Button disabled={value === input} onClick={handleSave}>
-            Save
+            保存
           </Button>
         </DialogActions>
       </Dialog>

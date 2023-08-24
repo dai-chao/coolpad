@@ -251,7 +251,7 @@ export default function PageStructureExplorer() {
                     my: 0.5,
                 })}
             >
-                COMPONENTS
+                组件
             </Typography>
             <IconButton size="medium" onClick={() => {
                 dispatch({

@@ -16,7 +16,7 @@ export default function PreviewHeader({ pageId }: PreviewHeaderProps) {
         actions={
           <Stack direction="row" spacing={1} alignItems="center">
             <Typography variant="body2" sx={{ color: 'primary.main' }}>
-              This is a preview version of the application.
+              这是预览版本
             </Typography>
             <Button
               variant="outlined"
@@ -25,7 +25,7 @@ export default function PreviewHeader({ pageId }: PreviewHeaderProps) {
               component="a"
               href={pageId ? `/_toolpad/app/pages/${pageId}` : '/_toolpad/app'}
             >
-              Edit
+              编辑
             </Button>
           </Stack>
         }

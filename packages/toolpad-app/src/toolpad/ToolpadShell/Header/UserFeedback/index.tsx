@@ -130,31 +130,31 @@ function UserFeedback() {
           </Button>
         </DialogActions>
       </Dialog>
-      <Tooltip title="Help and resources">
+      <Tooltip title="帮助中心">
         <IconButton {...buttonProps} color="primary">
           <HelpOutlinedIcon />
         </IconButton>
       </Tooltip>
       <Menu {...menuProps}>
-        <FeedbackMenuItemLink href={DOCUMENTATION_URL}>Documentation</FeedbackMenuItemLink>
-        <FeedbackMenuItemLink href={REPORT_BUG_URL}>Report bug</FeedbackMenuItemLink>
+        <FeedbackMenuItemLink href={DOCUMENTATION_URL}>文档</FeedbackMenuItemLink>
+        <FeedbackMenuItemLink href={REPORT_BUG_URL}>反馈 bug</FeedbackMenuItemLink>
         <FeedbackMenuItemLink href={FEATURE_REQUEST_URL}>
-          Request or upvote feature
+          提交更新
         </FeedbackMenuItemLink>
         <Divider />
-        <MenuItem disabled>{getReadableTarget()}</MenuItem>
+        {/* <MenuItem disabled>{getReadableTarget()}</MenuItem> */}
 
         <MenuItem
           disabled={!updateAvailable}
           onClick={handleUpdateDialogOpen}
           sx={{ justifyContent: 'space-between' }}
         >
-          Version {process.env.TOOLPAD_VERSION}
+          版本 {process.env.TOOLPAD_VERSION}
           {updateAvailable ? (
-            <Chip size="small" color="error" variant="outlined" label="Update" clickable />
+            <Chip size="small" color="error" variant="outlined" label="更新" clickable />
           ) : null}
         </MenuItem>
-        <MenuItem disabled>Build {process.env.TOOLPAD_BUILD}</MenuItem>
+        {/* <MenuItem disabled>Build {process.env.TOOLPAD_BUILD}</MenuItem> */}
       </Menu>
     </React.Fragment>
   );

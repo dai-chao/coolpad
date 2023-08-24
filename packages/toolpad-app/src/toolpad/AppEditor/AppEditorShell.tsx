@@ -30,7 +30,7 @@ function getSaveState(domLoader: DomLoader): React.ReactNode {
   }
 
   return (
-    <Tooltip title="All changes saved!">
+    <Tooltip title="所有修改已保存!">
       <CloudDoneIcon color="primary" />
     </Tooltip>
   );
@@ -63,7 +63,7 @@ export default function AppEditorShell({ children, ...props }: ToolpadShellProps
             href={previewPath}
             target="_blank"
           >
-            Preview
+            预览
           </Button>
         </Stack>
       }

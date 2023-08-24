@@ -38,7 +38,7 @@ export default function ComponentEditor({ className }: ComponentEditorProps) {
           }}
         />
       ) : (
-        <Button onClick={handleAddThemeClick}>Add theme</Button>
+        <Button onClick={handleAddThemeClick}>添加主题</Button>
       )}
     </div>
   );

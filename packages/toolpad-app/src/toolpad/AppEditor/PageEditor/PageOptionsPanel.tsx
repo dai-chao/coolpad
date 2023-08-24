@@ -8,8 +8,8 @@ import NodeNameEditor from '../NodeNameEditor';
 import * as appDom from '../../../appDom';
 
 const PAGE_DISPLAY_OPTIONS: { value: appDom.PageDisplayMode; label: string }[] = [
-  { value: 'shell', label: 'App shell' },
-  { value: 'standalone', label: 'No shell' },
+  { value: 'shell', label: '应用系统' },
+  { value: 'standalone', label: '无' },
 ];
 
 export default function PageOptionsPanel() {
@@ -36,14 +36,14 @@ export default function PageOptionsPanel() {
 
   return (
     <Stack spacing={1} alignItems="start" data-testid="page-editor">
-      <Typography variant="subtitle1">Page:</Typography>
+      <Typography variant="subtitle1">页面:</Typography>
       <NodeNameEditor node={page} />
       <TextField
         select
         defaultValue="shell"
         value={page.attributes.display}
         onChange={handleDisplayModeChange}
-        label="Display mode"
+        label="显示模式"
         fullWidth
       >
         {PAGE_DISPLAY_OPTIONS.map((option) => {
@@ -55,7 +55,7 @@ export default function PageOptionsPanel() {
         })}
       </TextField>
       <Divider variant="middle" sx={{ alignSelf: 'stretch' }} />
-      <Typography variant="overline">Page State:</Typography>
+      <Typography variant="overline">页面状态:</Typography>
       <UrlQueryEditor pageNodeId={pageNodeId} />
       <QueryEditor />
     </Stack>

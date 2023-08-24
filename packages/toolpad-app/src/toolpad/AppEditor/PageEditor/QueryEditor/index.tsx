@@ -233,7 +233,7 @@ export default function QueryEditor() {
   return (
     <Stack spacing={1} alignItems="start" sx={{ width: '100%' }}>
       <Button color="inherit" startIcon={<AddIcon />} onClick={handleCreate}>
-        Add query
+        新增查询
       </Button>
       <Popover
         open={open}
@@ -245,12 +245,12 @@ export default function QueryEditor() {
         }}
       >
         <Paper sx={{ p: 2 }}>
-          <Typography sx={{ mb: 2 }}>Make backend data available as state on the page.</Typography>
+          <Typography sx={{ mb: 2 }}>使后端数据在页面上作为可用的状态</Typography>
           <Stack direction="row" gap={1}>
             <DataSourceButton onClick={handleCreateClick('local')}>
-              Custom function
+              自定义函数
             </DataSourceButton>
-            <DataSourceButton onClick={handleCreateClick('rest')}>HTTP request</DataSourceButton>
+            <DataSourceButton onClick={handleCreateClick('rest')}>HTTP 请求</DataSourceButton>
           </Stack>
         </Paper>
       </Popover>

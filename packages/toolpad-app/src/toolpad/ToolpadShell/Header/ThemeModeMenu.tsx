@@ -19,17 +19,17 @@ interface ThemeModeMenuOption {
 
 const options: Record<string, ThemeModeMenuOption> = {
   light: {
-    label: 'Light',
+    label: '浅色',
     value: 'light',
     icon: <LightModeOutlined />,
   },
   dark: {
-    label: 'Dark',
+    label: '深色',
     value: 'dark',
     icon: <DarkModeOutlined />,
   },
   system: {
-    label: 'System',
+    label: '系统',
     value: 'system',
     icon: <SettingsBrightnessOutlined />,
   },
@@ -40,7 +40,7 @@ function ThemeModeMenu({ mode, onChange }: ThemeModeMenuProps) {
 
   return (
     <React.Fragment>
-      <Tooltip title="Change theme">
+      <Tooltip title="修改主题">
         <IconButton {...buttonProps} aria-label="Change theme" color="primary">
           {options[mode].icon}
         </IconButton>

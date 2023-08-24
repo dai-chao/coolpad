@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: page
+spec:
+  id: Z6-XAOt
+  title: Default page
+  content:
+    - component: PageRow
+      name: pageRow
+      children:
+        - component: DataGrid
+          name: dataGrid
+    - component: PageRow
+      name: pageRow1
+      children:
+        - component: Metric
+          name: metric
+    - component: PageRow
+      name: pageRow2
+      children:
+        - component: codeComponent.Card
+          name: codeComponent_Card
+        - component: codeComponent.Card
+          name: codeComponent_Card1

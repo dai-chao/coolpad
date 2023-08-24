@@ -189,7 +189,7 @@ function ConnectionParamsInput({ value, onChange }: ConnectionEditorProps<RestCo
       <Toolbar disableGutters>
         <Box sx={{ flex: 1 }} />
         <Button variant="contained" onClick={doSubmit} disabled={isSaveDisabled(formState)}>
-          Save
+          保存
         </Button>
       </Toolbar>
     </Stack>
@@ -443,11 +443,11 @@ function QueryEditor({
               <TabContext value={activeTab}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                   <TabList onChange={handleActiveTabChange} aria-label="Fetch options active tab">
-                    <Tab label="URL query" value="urlQuery" />
-                    <Tab label="Body" value="body" />
-                    <Tab label="Headers" value="headers" />
-                    <Tab label="Response" value="response" />
-                    <Tab label="Transform" value="transform" />
+                    <Tab label="地址参数" value="urlQuery" />
+                    <Tab label="请求体" value="body" />
+                    <Tab label="请求头" value="headers" />
+                    <Tab label="返回数据" value="response" />
+                    <Tab label="数据转换" value="transform" />
                   </TabList>
                 </Box>
                 <TabPanel disableGutters value="urlQuery">

@@ -38,7 +38,7 @@ function AppOptions({ dom }: AppOptionsProps) {
             <ListItemIcon>
               <CodeIcon />
             </ListItemIcon>
-            <ListItemText>View DOM</ListItemText>
+            <ListItemText>查看 DOM</ListItemText>
           </MenuItem>
         ) : null}
       </Menu>

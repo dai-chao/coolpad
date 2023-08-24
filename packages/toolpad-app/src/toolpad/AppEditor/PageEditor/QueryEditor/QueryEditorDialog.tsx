@@ -67,16 +67,16 @@ function QueryEditorDialogActions({
   return (
     <DialogActions>
       <Button color="inherit" variant="text" onClick={onClose}>
-        Cancel
+        取消
       </Button>
       <Button onClick={handleRemoveConfirmOpen} disabled={isDraft}>
-        Remove
+        删除
       </Button>
       <ConfirmDialog open={removeConfirmOpen} onClose={handleRemoveConfirm} severity="error">
-        Are you sure your want to remove this query?
+        是否确实要删除此查询？
       </ConfirmDialog>
       <Button disabled={saveDisabled} onClick={onSave}>
-        Save
+        保存
       </Button>
     </DialogActions>
   );
@@ -274,7 +274,7 @@ export default function QueryNodeEditorDialog<Q>({
                 required
                 autoFocus
                 fullWidth
-                label="name"
+                label="名称"
                 value={input.name}
                 onChange={(event) =>
                   setInput((existing) => ({ ...existing, name: event.target.value }))
@@ -327,16 +327,16 @@ export default function QueryNodeEditorDialog<Q>({
             <Stack direction="row" alignItems="center" sx={{ pt: 2, px: 3, gap: 2 }}>
               <TextField select label="mode" value={mode} onChange={handleModeChange}>
                 <MenuItem value="query">
-                  Fetch at any time to always be available on the page
+                  随时获取以在页面上始终可用
                 </MenuItem>
-                <MenuItem value="mutation">Only fetch on manual action</MenuItem>
+                <MenuItem value="mutation">仅在手动操作时提取</MenuItem>
               </TextField>
               <BindableEditor<boolean>
                 liveBinding={liveEnabled}
                 globalScope={pageState}
                 globalScopeMeta={globalScopeMeta}
                 jsRuntime={jsBrowserRuntime}
-                label="Enabled"
+                label="启用"
                 propType={{ type: 'boolean' }}
                 value={input.attributes.enabled ?? true}
                 onChange={handleEnabledChange}
@@ -348,7 +348,7 @@ export default function QueryNodeEditorDialog<Q>({
                 }}
                 sx={{ maxWidth: 300 }}
                 type="number"
-                label="Refetch interval"
+                label="请求间隔"
                 value={refetchIntervalInSeconds(input.attributes.refetchInterval) ?? ''}
                 onChange={handleRefetchIntervalChange}
                 disabled={mode !== 'query'}
@@ -364,7 +364,7 @@ export default function QueryNodeEditorDialog<Q>({
           />
         </ConnectionContextProvider>
       ) : (
-        <Alert severity="error">Datasource &quot;{dataSourceId}&quot; not found</Alert>
+        <Alert severity="error">数据源 &quot;{dataSourceId}&quot; 未找到</Alert>
       )}
     </Dialog>
   );

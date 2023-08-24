@@ -245,7 +245,7 @@ export default function HierarchyExplorer({ className }: HierarchyExplorerProps)
         <HierarchyTreeItem
           nodeId=":pages"
           aria-level={1}
-          labelText="NAVIGATOR"
+          labelText="导航"
           createLabelText="Create page"
           onCreate={handleCreatePageDialogOpen}
         >

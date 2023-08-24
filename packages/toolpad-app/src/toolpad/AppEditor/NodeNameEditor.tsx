@@ -61,7 +61,7 @@ export default function NodeNameEditor({ node, sx }: NodeNameEditorProps) {
           // fontSize: 11,
           width: 200,
           // flexSize
-        }}>Node name</Typography>
+        }}>节点名称</Typography>
         <TextField
             sx={sx}
             error={!isNameValid}

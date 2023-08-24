@@ -25,7 +25,7 @@ export default function QueryInputPanel({
           onClick={onRunPreview}
           disabled={previewDisabled}
         >
-          Preview
+          预览
         </LoadingButton>
         <FlexFill />
         {actions}

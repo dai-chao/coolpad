@@ -232,12 +232,12 @@ export default function NodeHud({
             {node.name}
             <DragIndicatorIcon color="inherit" />
             <IconButton aria-label="Duplicate" color="inherit" onMouseUp={onDuplicate}>
-              <Tooltip title="Duplicate" enterDelay={400}>
+              <Tooltip title="复制" enterDelay={400}>
                 <ContentCopy color="inherit" />
               </Tooltip>
             </IconButton>
             <IconButton aria-label="Remove" color="inherit" onMouseUp={onDelete}>
-              <Tooltip title="Remove" enterDelay={400}>
+              <Tooltip title="删除" enterDelay={400}>
                 <DeleteIcon color="inherit" />
               </Tooltip>
             </IconButton>

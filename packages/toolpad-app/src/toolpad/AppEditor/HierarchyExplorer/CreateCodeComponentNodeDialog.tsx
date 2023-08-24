@@ -78,7 +78,7 @@ export default function CreateCodeComponentDialog({
             setSnackbarState({ name });
           }}
         >
-          <DialogTitle>Create a new Code Component</DialogTitle>
+          <DialogTitle>创建新组件</DialogTitle>
           <DialogContent>
             <TextField
               sx={{ my: 1 }}
@@ -86,7 +86,7 @@ export default function CreateCodeComponentDialog({
               onFocus={handleInputFocus}
               autoFocus
               fullWidth
-              label="name"
+              label="名称"
               value={name}
               onChange={(event) => setName(event.target.value)}
               error={open && !isNameValid}
@@ -95,10 +95,10 @@ export default function CreateCodeComponentDialog({
           </DialogContent>
           <DialogActions>
             <Button color="inherit" variant="text" onClick={onClose}>
-              Cancel
+              取消
             </Button>
             <Button type="submit" disabled={!isFormValid}>
-              Create
+              创建
             </Button>
           </DialogActions>
         </DialogForm>

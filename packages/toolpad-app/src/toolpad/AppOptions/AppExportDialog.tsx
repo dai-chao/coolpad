@@ -13,12 +13,12 @@ function AppExportDialog({ open, onClose, dom }: AppExportDialogProps) {
 
   return (
     <Dialog aria-labelledby={dialogTitleId} fullWidth maxWidth="sm" open={open} onClose={onClose}>
-      <DialogTitle id={dialogTitleId}>Application DOM</DialogTitle>
+      <DialogTitle id={dialogTitleId}>应用 DOM</DialogTitle>
       <DialogContent sx={{ position: 'relative', display: 'flex', alignItems: 'stretch' }}>
         <JsonView sx={{ flex: 1 }} copyToClipboard src={dom} expandPaths={[]} expandLevel={5} />
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Close</Button>
+        <Button onClick={onClose}>关闭</Button>
       </DialogActions>
     </Dialog>
   );

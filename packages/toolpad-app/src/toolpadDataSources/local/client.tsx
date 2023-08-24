@@ -268,7 +268,7 @@ function QueryEditor({
       <QueryInputPanel
         previewDisabled={!selectedOption}
         onRunPreview={handleRunPreview}
-        actions={<Button onClick={handleOpenCreateNewHandler}>New handler file</Button>}
+        actions={<Button onClick={handleOpenCreateNewHandler}>新建处理程序</Button>}
       >
         <Stack direction="row" sx={{ gap: 2, height: '100%', mx: 3 }}>
           <Box sx={{ position: 'relative', overflow: 'auto', height: '100%', width: '40%' }}>
@@ -352,7 +352,7 @@ function QueryEditor({
           </Box>
 
           <Stack sx={{ gap: 1, flex: 1, overflow: 'auto' }}>
-            <Typography>Parameters:</Typography>
+            <Typography>参数:</Typography>
             {Object.entries(parameterDefs).map(([name, definiton]) => {
               const Control = getDefaultControl(propTypeControls, definiton, liveBindings);
               return Control ? (

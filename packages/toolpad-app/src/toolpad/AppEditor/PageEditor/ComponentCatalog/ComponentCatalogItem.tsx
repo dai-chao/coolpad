@@ -31,6 +31,8 @@ import HtmlIcon from '@mui/icons-material/Html';
 import TableRowsIcon from '@mui/icons-material/TableRows';
 import ViewColumnIcon from '@mui/icons-material/ViewColumn';
 import TagIcon from '@mui/icons-material/Tag';
+import SpaceDashboardSharpIcon from '@mui/icons-material/SpaceDashboardSharp';
+
 import { ButtonBase, SxProps } from '@mui/material';
 
 const iconMap = new Map<string, React.ComponentType<SvgIconProps>>([
@@ -44,7 +46,7 @@ const iconMap = new Map<string, React.ComponentType<SvgIconProps>>([
   ['List', ListIcon],
   ['Paper', LayersIcon],
   ['Form', DnsIcon],
-  ['Card', ContactPageIcon],
+  ['Card', SpaceDashboardSharpIcon],
   ['Tabs', TabIcon],
   ['Slider', TuneIcon],
   ['Switch', ToggleOnIcon],
@@ -75,6 +77,10 @@ interface ComponentIconProps {
 }
 
 export function ComponentIcon({ id: componentId, kind, sx }: ComponentIconProps) {
+  if(kind === 'custom' && componentId === "codeComponent.Card"){
+    kind = "builtIn" 
+    componentId = "Card"
+  }
   const Icon = iconMap.get(kind === 'custom' ? 'CodeComponent' : componentId);
   return Icon ? <Icon sx={{ fontSize: 24, opacity: kind === 'future' ? 0.75 : 1, ...sx }} /> : null;
 }
@@ -98,6 +104,27 @@ function ComponentCatalogItem({
   kind,
   onDragStart,
 }: ComponentCatalogItemProps) {
+
+  const nameObj:any = {
+    'Autocomplete':"自动完成",
+    'Text':"文本",
+    'Button':"按钮",
+    'Image':"图片",
+    'Data Grid':"数据表格",
+    'Text Field':"输入框",
+    'Select':"下拉选择",
+    'List':"列表",
+    'Paper':"容器",
+    'Form':"表单",
+    'Card':"Card",
+    'Tabs':"标签页",
+    'Date Picker':"时间选择",
+    'File Picker':"文件选择",
+    'Container':"容器",
+    'Chart':"图表",
+    'Metric':"公式",
+  }
+
   return (
     <Box
       className="ComponentCatalogItem"
@@ -143,7 +170,9 @@ function ComponentCatalogItem({
           overflow: 'hidden',
         }}
       >
-        {displayName}
+        {
+          nameObj[displayName] || displayName
+        }
       </span>
     </Box>
   );

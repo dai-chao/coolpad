@@ -70,14 +70,14 @@ export default function CreatePageDialog({ open, onClose, ...props }: CreatePage
           onClose();
         }}
       >
-        <DialogTitle>Create a new Page</DialogTitle>
+        <DialogTitle>创建一个新页面</DialogTitle>
         <DialogContent>
           <TextField
             sx={{ my: 1 }}
             required
             autoFocus
             fullWidth
-            label="name"
+            label="名称"
             value={name}
             onChange={(event) => setName(event.target.value)}
             error={!isNameValid}
@@ -86,10 +86,10 @@ export default function CreatePageDialog({ open, onClose, ...props }: CreatePage
         </DialogContent>
         <DialogActions>
           <Button color="inherit" variant="text" onClick={onClose}>
-            Cancel
+            取消
           </Button>
           <Button type="submit" disabled={!isFormValid}>
-            Create
+            创建
           </Button>
         </DialogActions>
       </DialogForm>

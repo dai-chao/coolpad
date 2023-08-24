@@ -142,7 +142,7 @@ export default function ComponentCatalog({ className }: ComponentCatalogProps) {
               }}
             >
                 <Typography variant="h2" sx={{ p: 1, fontSize: 19, pt: 2, textAlign: 'center' }}>
-                    Insert Component
+                    插入组件
                 </Typography>
                 <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap={2} padding={1}>
                 {Object.entries(toolpadComponents).map(([componentId, componentType]) => {
@@ -169,7 +169,7 @@ export default function ComponentCatalog({ className }: ComponentCatalogProps) {
                 flexDirection={'row'}
                 justifyContent="space-between"
               >
-                <Typography variant="overline">Custom Components</Typography>
+                <Typography variant="overline">自定义组件</Typography>
                 <IconButton
                   aria-label="Expand custom components"
                   sx={{
@@ -202,7 +202,7 @@ export default function ComponentCatalog({ className }: ComponentCatalogProps) {
                   })}
                   <ComponentCatalogItem
                     id="CreateNew"
-                    displayName="Create"
+                    displayName="创建"
                     kind="create"
                     onClick={handleCreateCodeComponentDialogOpen}
                   />

@@ -85,7 +85,7 @@ export default function ConnectionSelect({
       select
       fullWidth
       value={selection}
-      label="Connection"
+      label="连接"
       onChange={handleSelectionChange}
     >
       {options.map((option, index) => {

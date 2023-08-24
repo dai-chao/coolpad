@@ -21,8 +21,8 @@ function Header({ actions, status, enableUserFeedback = true }: HeaderProps) {
     [setThemeMode],
   );
 
-  const productIcon =
-    theme.palette.mode === 'dark' ? '/product-icon-dark.svg' : '/product-icon-light.svg';
+  const productIcon = "https://cdn1.jijyun.cn/p/cache/winDeal/images/logo-jjy.svg";
+    // theme.palette.mode === 'dark' ? '/product-icon-dark.svg' : '/product-icon-light.svg';
 
   return (
     <React.Fragment>
@@ -42,7 +42,7 @@ function Header({ actions, status, enableUserFeedback = true }: HeaderProps) {
               justifyContent: 'start',
             }}
           >
-            <Tooltip title="Home">
+            <Tooltip title="主页">
               <Link
                 color="inherit"
                 aria-label="Home"
@@ -50,7 +50,7 @@ function Header({ actions, status, enableUserFeedback = true }: HeaderProps) {
                 underline="none"
                 sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1 }}
               >
-                {/*<img src={productIcon} alt="Toolpad product icon" width={25} height={25} />*/}
+                <img src={productIcon} alt="Toolpad product icon" width={40} height={40} />
                 <Box
                   data-testid="brand"
                   sx={{
@@ -62,7 +62,7 @@ function Header({ actions, status, enableUserFeedback = true }: HeaderProps) {
                     // fontFamily: theme.typography.fontFamily,
                   }}
                 >
-                  CoolPad
+                  集简云低代码
                 </Box>
               </Link>
             </Tooltip>
