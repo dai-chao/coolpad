@@ -345,8 +345,8 @@ export default function NodeDropArea({
         className={clsx(
           highlightedZoneOverlayClass
             ? {
-                [highlightedZoneOverlayClass]: !isHighlightingCenter || isEmptySlot,
-              }
+              [highlightedZoneOverlayClass]: !isHighlightingCenter || isEmptySlot,
+            }
             : {},
         )}
         highlightRelativeRect={{
@@ -358,7 +358,7 @@ export default function NodeDropArea({
       />
       {isEmptySlot && slotRect ? (
         <EmptySlot style={absolutePositionCss(slotRect)}>
-          <Typography variant="subtitle2">Drop component here</Typography>
+          <Typography variant="subtitle2">拖动组件到这</Typography>
         </EmptySlot>
       ) : null}
     </React.Fragment>

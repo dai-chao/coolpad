@@ -93,7 +93,7 @@ export default function ComponentPanel({ className }: ComponentPanelProps) {
             {selectedNode && appDom.isElement(selectedNode) ? (
               <ComponentEditor node={selectedNode} />
             ) : (
-              <Typography variant="body1">No component selected.</Typography>
+              <Typography variant="body1">没有选中的组件</Typography>
             )}
           </TabPanel>
           <TabPanel value="theme" className={classes.panel}>

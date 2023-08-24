@@ -16,6 +16,7 @@ import {
   Box,
 } from '@mui/material';
 import HelpOutlinedIcon from '@mui/icons-material/HelpOutlined';
+import NearMeOutlinedIcon from '@mui/icons-material/NearMeOutlined';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import invariant from 'invariant';
 import useMenu from '../../../../utils/useMenu';
@@ -130,11 +131,32 @@ function UserFeedback() {
           </Button>
         </DialogActions>
       </Dialog>
+
       <Tooltip title="帮助中心">
         <IconButton {...buttonProps} color="primary">
           <HelpOutlinedIcon />
         </IconButton>
       </Tooltip>
+
+      <div>
+        <IconButton
+          color="primary"
+          style={{
+            width: "auto",
+            background: "#6F64F8",
+            color: "#ffffff",
+            fontSize: "14px",
+            display: "flex",
+            alignItems: "center",
+            padding: "0 10px"
+          }}>
+          <NearMeOutlinedIcon fontSize='smaill' style={{
+            marginRight: "5px"
+          }} />
+          发布
+        </IconButton>
+      </div>
+
       <Menu {...menuProps}>
         <FeedbackMenuItemLink href={DOCUMENTATION_URL}>文档</FeedbackMenuItemLink>
         <FeedbackMenuItemLink href={REPORT_BUG_URL}>反馈 bug</FeedbackMenuItemLink>
@@ -150,9 +172,9 @@ function UserFeedback() {
           sx={{ justifyContent: 'space-between' }}
         >
           版本 {process.env.TOOLPAD_VERSION}
-          {updateAvailable ? (
+          {/* {updateAvailable ? (
             <Chip size="small" color="error" variant="outlined" label="更新" clickable />
-          ) : null}
+          ) : null} */}
         </MenuItem>
         {/* <MenuItem disabled>Build {process.env.TOOLPAD_BUILD}</MenuItem> */}
       </Menu>

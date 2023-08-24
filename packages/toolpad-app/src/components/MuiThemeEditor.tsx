@@ -95,7 +95,10 @@ export default function MuiThemeEditor({ value, onChange }: MuiThemeEditorProps)
 
   const colorPicker = (intent: 'primary' | 'secondary') => (
     <PaletteColorPicker
-      label={capitalize(intent)}
+      // label={capitalize(intent)}
+      label={
+        intent === "primary" ? "主要的" : "次要的"
+      }
       value={
         (value?.palette?.[intent] as SimplePaletteColorOptions)?.main ||
         defaultTheme.palette[intent].main
@@ -107,9 +110,9 @@ export default function MuiThemeEditor({ value, onChange }: MuiThemeEditorProps)
             ...value?.palette,
             [intent]: newMain
               ? {
-                  main: newMain,
-                  contrastText: theme.palette.getContrastText(newMain),
-                }
+                main: newMain,
+                contrastText: theme.palette.getContrastText(newMain),
+              }
               : undefined,
           },
         });
@@ -137,11 +140,11 @@ export default function MuiThemeEditor({ value, onChange }: MuiThemeEditorProps)
       >
         <IconToggleButton value="light" aria-label="light">
           <LightModeIcon />
-          Light
+          浅色
         </IconToggleButton>
         <IconToggleButton value="dark" aria-label="dark">
           <DarkModeIcon />
-          Dark
+          深色
         </IconToggleButton>
       </ToggleButtonGroup>
 

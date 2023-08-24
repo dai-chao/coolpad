@@ -22,11 +22,12 @@ function Header({ actions, status, enableUserFeedback = true }: HeaderProps) {
   );
 
   const productIcon = "https://cdn1.jijyun.cn/p/cache/winDeal/images/logo-jjy.svg";
-    // theme.palette.mode === 'dark' ? '/product-icon-dark.svg' : '/product-icon-light.svg';
+  // theme.palette.mode === 'dark' ? '/product-icon-dark.svg' : '/product-icon-light.svg';
 
   return (
     <React.Fragment>
       <AppBar
+        style={{ background: "#ffffff" }}
         position="fixed"
         color="default"
         elevation={0}

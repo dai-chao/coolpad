@@ -11,5 +11,10 @@
     "**/docs/public/_redirects": "plaintext"
   },
   "typescript.tsdk": "node_modules/typescript/lib",
-  "cSpell.words": ["Toolpad"]
+  "cSpell.words": [
+    "Toolpad"
+  ],
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  }
 }
