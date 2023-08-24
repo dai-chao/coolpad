@@ -9,11 +9,18 @@ spec:
       children:
         - component: Tabs
           name: tabs
+          layout:
+            horizontalAlign: center
     - component: PageRow
       name: pageRow1
       children:
         - component: DataGrid
           name: dataGrid
+    - component: PageRow
+      name: pageRow4
+      children:
+        - component: Tabs
+          name: tabs1
     - component: PageRow
       name: pageRow2
       children:

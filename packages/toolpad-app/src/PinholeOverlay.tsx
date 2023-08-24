@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { styled } from '@mui/material';
 import { Rectangle } from './utils/geometry';
+import { borderLeft } from '@mui/system';
 
 const PinholeOverlayRoot = styled('div')({
   pointerEvents: 'none !important' as 'none',
@@ -16,7 +17,7 @@ const PinholeOverlayRoot = styled('div')({
     opacity: 0.03,
   },
 });
-
+// 画布
 export interface PinholeOverlayprops {
   className?: string;
   onClick?: React.MouseEventHandler<HTMLDivElement>;

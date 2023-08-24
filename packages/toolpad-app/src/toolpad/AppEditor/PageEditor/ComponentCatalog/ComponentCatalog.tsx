@@ -30,12 +30,12 @@ const FUTURE_COMPONENTS = new Map<string, FutureComponentSpec>([
   ['Radio', { url: 'https://github.com/mui/mui-toolpad/issues/744', displayName: 'Radio' }],
   ['Checkbox', { url: 'https://github.com/mui/mui-toolpad/issues/742', displayName: 'Checkbox' }],
 ]);
-
+// 组件拖拽区宽度
 const WIDTH_COLLAPSED = 40;
 
 const ComponentCatalogRoot = styled('div')({
   position: 'relative',
-  width: WIDTH_COLLAPSED + 1,
+  // width: WIDTH_COLLAPSED + 1,
   height: '100%',
   zIndex: 1,
   overflow: 'visible',
@@ -53,9 +53,9 @@ export default function ComponentCatalog({ className }: ComponentCatalogProps) {
 
   const [openStart, setOpenStart] = React.useState(0);
 
-    React.useEffect(() => {
-        setOpenStart(state?.componentsOpen === true ? Date.now() : 0)
-    }, [state?.componentsOpen])
+  React.useEffect(() => {
+    setOpenStart(state?.componentsOpen === true ? Date.now() : 0)
+  }, [state?.componentsOpen])
 
   const [openCustomComponents, setOpenCustomComponents] = useLocalStorageState(
     'catalog-custom-expanded',
@@ -76,7 +76,7 @@ export default function ComponentCatalog({ className }: ComponentCatalogProps) {
 
   const closeDrawer = React.useCallback(
     (delay?: number) => {
-        return;
+      return;
       const timeOpen = Date.now() - openStart;
       const defaultDelay = timeOpen > 750 ? 500 : 0;
       closeTimeoutRef.current = setTimeout(() => setOpenStart(0), delay ?? defaultDelay);
@@ -112,8 +112,8 @@ export default function ComponentCatalog({ className }: ComponentCatalogProps) {
       <ComponentCatalogRoot
         data-testid="component-catalog"
         className={className}
-        // onMouseEnter={handleMouseEnter}
-        // onMouseLeave={handleMouseLeave}
+      // onMouseEnter={handleMouseEnter}
+      // onMouseLeave={handleMouseLeave}
       >
         <Box
           sx={{
@@ -141,10 +141,10 @@ export default function ComponentCatalog({ className }: ComponentCatalogProps) {
                 scrollbarGutter: 'stable',
               }}
             >
-                <Typography variant="h2" sx={{ p: 1, fontSize: 19, pt: 2, textAlign: 'center' }}>
-                    插入组件
-                </Typography>
-                <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap={2} padding={1}>
+              <Typography variant="h2" sx={{ p: 1, fontSize: 19, pt: 2, textAlign: 'center' }}>
+                插入组件
+              </Typography>
+              <Box display="grid" gridTemplateColumns="1fr 1fr 1fr" gap={2} padding={1}>
                 {Object.entries(toolpadComponents).map(([componentId, componentType]) => {
                   invariant(componentType, `No component definition found for "${componentId}"`);
                   return componentType.builtIn && !componentType.system ? (

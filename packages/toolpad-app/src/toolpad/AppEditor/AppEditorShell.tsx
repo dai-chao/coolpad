@@ -78,7 +78,7 @@ export default function AppEditorShell({ children, ...props }: ToolpadShellProps
           height: '100%',
         }}
       >
-        <PagePanel
+        <PagePanel  // 菜单导航区域
           sx={{
             width: 250,
             borderRight: 1,

@@ -249,9 +249,9 @@ export default function RenderOverlay({ bridge }: RenderOverlayProps) {
         },
         currentView.kind === 'page'
           ? {
-              ...currentView,
-              selectedNodeId: null,
-            }
+            ...currentView,
+            selectedNodeId: null,
+          }
           : currentView,
       );
     },
@@ -329,13 +329,13 @@ export default function RenderOverlay({ bridge }: RenderOverlayProps) {
   const handleEdgeDragStart = React.useCallback(
     (node: appDom.AppDomNode) =>
       (edge: RectangleEdge) =>
-      (event: React.MouseEvent<HTMLElement>) => {
-        event.stopPropagation();
+        (event: React.MouseEvent<HTMLElement>) => {
+          event.stopPropagation();
 
-        api.edgeDragStart({ nodeId: node.id, edge });
+          api.edgeDragStart({ nodeId: node.id, edge });
 
-        selectNode(node.id);
-      },
+          selectNode(node.id);
+        },
     [api, selectNode],
   );
 
@@ -520,8 +520,8 @@ export default function RenderOverlay({ bridge }: RenderOverlayProps) {
         ) {
           const parentChildren = nodeParentProp
             ? (appDom.getChildNodes(dom, parent) as appDom.NodeChildren<appDom.ElementNode>)[
-                nodeParentProp
-              ]
+            nodeParentProp
+            ]
             : [];
 
           const parentChildrenCount = parentChildren.length;
@@ -670,7 +670,7 @@ export default function RenderOverlay({ bridge }: RenderOverlayProps) {
         (activeDropSlotParentProp &&
           (isDraggingOverPage || appDom.isElement(activeDropNode)) &&
           (appDom.getChildNodes(dom, activeDropNode) as appDom.NodeChildren<appDom.ElementNode>)[
-            activeDropSlotParentProp
+          activeDropSlotParentProp
           ]) ||
         [];
 
@@ -690,8 +690,8 @@ export default function RenderOverlay({ bridge }: RenderOverlayProps) {
         activeDropZone = isDraggingOverEmptyContainer
           ? DROP_ZONE_CENTER
           : getRectangleEdgeDropZone(
-              getRectanglePointActiveEdge(activeDropAreaRect, relativeX, relativeY),
-            );
+            getRectanglePointActiveEdge(activeDropAreaRect, relativeX, relativeY),
+          );
 
         if (isDraggingOverPage) {
           if (activeDropNodeRect && relativeY < 0 && !isEmptyPage) {
@@ -918,15 +918,15 @@ export default function RenderOverlay({ bridge }: RenderOverlayProps) {
                 const newParentIndex =
                   dragOverZone === DROP_ZONE_TOP
                     ? appDom.getNewParentIndexBeforeNode(
-                        draft,
-                        dragOverNode,
-                        dragOverNodeParentProp,
-                      )
+                      draft,
+                      dragOverNode,
+                      dragOverNodeParentProp,
+                    )
                     : appDom.getNewParentIndexAfterNode(
-                        draft,
-                        dragOverNode,
-                        dragOverNodeParentProp,
-                      );
+                      draft,
+                      dragOverNode,
+                      dragOverNodeParentProp,
+                    );
 
                 if (isDraggingOverRow && !isPageRow(draggedNode)) {
                   if (isOriginalParentPage) {
@@ -1050,10 +1050,10 @@ export default function RenderOverlay({ bridge }: RenderOverlayProps) {
                   dragOverZone === DROP_ZONE_RIGHT
                     ? appDom.getNewParentIndexAfterNode(draft, dragOverNode, dragOverNodeParentProp)
                     : appDom.getNewParentIndexBeforeNode(
-                        draft,
-                        dragOverNode,
-                        dragOverNodeParentProp,
-                      );
+                      draft,
+                      dragOverNode,
+                      dragOverNodeParentProp,
+                    );
 
                 draft = addOrMoveNode(
                   draft,
@@ -1209,7 +1209,7 @@ export default function RenderOverlay({ bridge }: RenderOverlayProps) {
           if (
             draggedEdge === RECTANGLE_EDGE_LEFT &&
             cursorPos.x >
-              Math.max(parentRect.x, previousSiblingRect?.x || 0) + minGridColumnWidth &&
+            Math.max(parentRect.x, previousSiblingRect?.x || 0) + minGridColumnWidth &&
             cursorPos.x < draggedNodeRect.x + draggedNodeRect.width - minGridColumnWidth
           ) {
             const updatedTransformScale =
@@ -1227,11 +1227,11 @@ export default function RenderOverlay({ bridge }: RenderOverlayProps) {
             draggedEdge === RECTANGLE_EDGE_RIGHT &&
             cursorPos.x > draggedNodeRect.x + minGridColumnWidth &&
             cursorPos.x <
-              Math.min(
-                parentRect.x + parentRect.width,
-                nextSiblingRect ? nextSiblingRect.x + nextSiblingRect.width : 0,
-              ) -
-                minGridColumnWidth
+            Math.min(
+              parentRect.x + parentRect.width,
+              nextSiblingRect ? nextSiblingRect.x + nextSiblingRect.width : 0,
+            ) -
+            minGridColumnWidth
           ) {
             const updatedTransformScale = snappedToGridCursorRelativePosX / draggedNodeRect.width;
 
@@ -1385,17 +1385,17 @@ export default function RenderOverlay({ bridge }: RenderOverlayProps) {
       onKeyDown={handleKeyDown}
       {...(draggedEdge
         ? {
-            onMouseMove: handleEdgeDragOver,
-            onMouseUp: handleEdgeDragEnd,
-          }
+          onMouseMove: handleEdgeDragOver,
+          onMouseUp: handleEdgeDragEnd,
+        }
         : {
-            onDragOver: handleNodeDragOver,
-            onDrop: handleNodeDrop,
-            onDragEnd: handleNodeDragEnd,
-            // This component has `pointer-events: none`, but we will selectively enable pointer-events
-            // for its children. We can still capture the click gobally
-            onMouseUp: handleNodeMouseUp,
-          })}
+          onDragOver: handleNodeDragOver,
+          onDrop: handleNodeDrop,
+          onDragEnd: handleNodeDragEnd,
+          // This component has `pointer-events: none`, but we will selectively enable pointer-events
+          // for its children. We can still capture the click gobally
+          onMouseUp: handleNodeMouseUp,
+        })}
     >
       {pageNodes.map((node) => {
         const nodeInfo = nodesInfo[node.id];
@@ -1442,8 +1442,8 @@ export default function RenderOverlay({ bridge }: RenderOverlayProps) {
                 onEdgeDragStart={
                   isHorizontallyResizable || isVerticallyResizable
                     ? handleEdgeDragStart(
-                        parent && isPageColumnChild && !isVerticallyResizable ? parent : node,
-                      )
+                      parent && isPageColumnChild && !isVerticallyResizable ? parent : node,
+                    )
                     : undefined
                 }
                 onDelete={handleNodeDelete(node.id)}

@@ -65,11 +65,11 @@ function FileEditor() {
   }, [currentView.kind, currentView.nodeId]);
 
   return (
-      <CustomContext.Provider value={state}>
-        <CustomDispatchContext.Provider value={dispatch}>
-          <AppEditorShell>{currentViewContent}</AppEditorShell>;
-        </CustomDispatchContext.Provider>
-      </CustomContext.Provider>
+    <CustomContext.Provider value={state}>
+      <CustomDispatchContext.Provider value={dispatch}>
+        <AppEditorShell>{currentViewContent}</AppEditorShell>;
+      </CustomDispatchContext.Provider>
+    </CustomContext.Provider>
   )
 }
 

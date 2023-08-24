@@ -61,7 +61,7 @@ const blue = {
   300: '#66B2FF',
   400: 'rgb(84, 92, 247)',
   main: 'rgb(84, 92, 247)',
-  500: '#007FFF',
+  500: '#6F64F8',
   600: '#0072E5', // vs blueDark 900: WCAG 4.6 AAA (large), APCA 36 Not for reading text
   700: '#0059B2',
   800: '#004C99',

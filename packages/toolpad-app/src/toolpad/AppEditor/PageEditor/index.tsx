@@ -57,10 +57,13 @@ function PageEditorContent({ node }: PageEditorContentProps) {
         primary="second"
       >
         <PageEditorRoot>
+          {/* 组件抽屉 */}
           <ComponentCatalog />
           <RenderPanel className={classes.renderPanel} />
         </PageEditorRoot>
+        {/* 组件属性配置 */}
         <ComponentPanel />
+
       </SplitPane>
     </PageEditorProvider>
   );

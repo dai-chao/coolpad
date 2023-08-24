@@ -35,7 +35,7 @@ function Overlay(props: OverlayProps) {
     [container],
   );
 
-  return <CacheProvider value={cache}>{children}</CacheProvider>;
+  return <CacheProvider style={{ background: "red" }} value={cache}>{children}</CacheProvider>;
 }
 
 export interface EditorCanvasHostProps {
@@ -204,9 +204,9 @@ export default function EditorCanvasHost({
       />
       {editorOverlayRoot
         ? ReactDOM.createPortal(
-            <Overlay container={editorOverlayRoot}>{overlay}</Overlay>,
-            editorOverlayRoot,
-          )
+          <Overlay container={editorOverlayRoot}>{overlay}</Overlay>,
+          editorOverlayRoot,
+        )
         : null}
 
       <Fade in={loading} appear={false} timeout={{ enter: 0, exit: 100 }}>
