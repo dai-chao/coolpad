@@ -62,8 +62,8 @@ function HierarchyTreeItem(props: StyledTreeItemProps) {
     onDeleteNode,
     onDuplicateNode,
     createLabelText,
-    deleteLabelText = 'Delete',
-    duplicateLabelText = 'Duplicate',
+    deleteLabelText = '删除',
+    duplicateLabelText = '复制',
     toolpadNodeId,
     ...other
   } = props;

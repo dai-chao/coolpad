@@ -41,6 +41,11 @@ export default function NodeMenu({
   );
   const deletedNode = deletedNodeId && appDom.getMaybeNode(dom, deletedNodeId);
   const latestDeletedNode = useLatest(deletedNode);
+  console.log(latestDeletedNode)
+
+  const typeObj: any = {
+    page: "页面"
+  }
 
   const handleDeleteNodeDialogClose = React.useCallback(
     (confirmed: boolean, event: React.MouseEvent) => {
@@ -89,12 +94,14 @@ export default function NodeMenu({
         </MenuItem>
       </Menu>
       <ConfirmDialog
+        title="确认"
         open={!!deletedNode}
         severity="error"
         onClose={handleDeleteNodeDialogClose}
-        okButton="Delete"
+        okButton="删除"
+        cancelButton="取消"
       >
-        Delete {latestDeletedNode?.type} &quot;{latestDeletedNode?.name}&quot;?
+        删除 {typeObj[latestDeletedNode?.type]} &quot;{latestDeletedNode?.name}&quot;?
       </ConfirmDialog>
     </React.Fragment>
   );

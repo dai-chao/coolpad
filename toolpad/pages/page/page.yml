@@ -16,18 +16,3 @@ spec:
       children:
         - component: DataGrid
           name: dataGrid
-    - component: PageRow
-      name: pageRow4
-      children:
-        - component: Tabs
-          name: tabs1
-    - component: PageRow
-      name: pageRow2
-      children:
-        - component: DataGrid
-          name: dataGrid1
-    - component: PageRow
-      name: pageRow3
-      children:
-        - component: DataGrid
-          name: dataGrid2
