@@ -1,24 +1,41 @@
 import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 
-import { Button, Form, Input, Checkbox, Space, Row, Col } from "antd"
+import { Button, Form, Input, Checkbox, Space, Row, Col, message, notification } from "antd"
 import "./index.css"
-import { display } from "@mui/system";
+
 
 function Login() {
 
-    const [loginType, setLoginType] = useState(1)
+    const [form] = Form.useForm()
+    const [loginType, setLoginType] = useState<number>(2)
+    const [time, setTime] = useState<number>(60)
+    const [submitLoading, changeSubmitLoading] = useState<boolean>(false)
+
+    const sendCode = () => {
+        let timer: any = null
+        if (timer) clearInterval(timer)
+        let s = 60
+        timer = setInterval(() => {
+            s--
+            setTime(s)
+            if (s === 0) {
+                setTime(60)
+                clearInterval(timer)
+            }
+        }, 1000)
+    }
 
     const navigate = useNavigate();
-    useEffect(() => {
-        let token = localStorage.getItem('token')
-        if (!token) {
-            console.log(token, 'token', navigate)
-            // navigate({
-            //     pathname: `/app/pages/login`
-            // });
-        }
-    }, [])
+    // useEffect(() => {
+    //     let token = localStorage.getItem('token')
+    //     if (!token) {
+    //         // console.log(token, 'token', navigate)
+    //         // navigate({
+    //         //     pathname: `/app/pages/login`
+    //         // });
+    //     }
+    // }, [])
 
     const login = () => {
         localStorage.setItem('token', '12345678908765478909876789')
@@ -31,8 +48,9 @@ function Login() {
 
 
     const onFinish = (values: any) => {
+        // changeSubmitLoading(true)
         console.log('Success:', values);
-        login()
+        // login()
     };
 
     const onFinishFailed = (errorInfo: any) => {
@@ -40,6 +58,9 @@ function Login() {
     }
 
     const changeLoginType = () => {
+        form.setFieldsValue({
+            code: undefined
+        })
         setLoginType(loginType === 1 ? 2 : 1)
     }
 
@@ -51,7 +72,7 @@ function Login() {
             position: "fixed",
             top: "0",
             left: "0",
-            zIndex: "999999999",
+            zIndex: "1202",
             display: "flex",
             alignItems: "center",
             justifyContent: "center"
@@ -67,6 +88,7 @@ function Login() {
                 overflow: "hidden"
             }}>
                 <Form
+                    form={form}
                     name="basic"
                     labelCol={{ span: 5 }}
                     wrapperCol={{ span: 16 }}
@@ -105,20 +127,46 @@ function Login() {
                         <Form.Item
                             label="用户名"
                             name="username"
-                            rules={[{ required: true, message: 'Please input your username!' }]}
+                            rules={[{ required: true, message: '请输入用户名!' }]}
                         >
                             <Input placeholder="请输入用户名" />
                         </Form.Item>
 
-                        <Form.Item
-                            label="密码"
-                            name="password"
-                            rules={[{ required: true, message: 'Please input your password!' }]}
-                        >
-                            <Input.Password placeholder="请输入密码" />
-                        </Form.Item>
+                        {
+                            loginType === 1 &&
+                            <Form.Item
+                                label="密码"
+                                name="password"
+                                rules={[{ required: true, message: '请输入密码!' }]}
+                            >
+                                <Input.Password placeholder="请输入密码" />
+                            </Form.Item>
+                        }
+
+                        {
+                            loginType === 2 &&
+                            <Form.Item label="验证码">
+                                <Space>
+                                    <Form.Item
+                                        name="code"
+                                        noStyle
+                                        rules={[{ required: true, message: '请输入验证码' }]}
+                                    >
+                                        <Input style={{ width: 192 }} placeholder="请输入验证码" />
+                                    </Form.Item>
+                                    <div>
+                                        <Button style={{
+                                            width: "132px"
+                                        }} type="primary" onClick={sendCode} disabled={time !== 60} >{
+                                                time === 60 ? "获取验证码" : `${time}秒后重新获取`
+                                            }</Button>
+                                    </div>
+                                </Space>
+                            </Form.Item>
+                        }
 
                         <Row style={{
+                            paddingTop: "5px",
                             marginBottom: "20px"
                         }}>
                             <Col offset={5}>
@@ -127,22 +175,24 @@ function Login() {
                                 }} onClick={changeLoginType}>{loginType === 1 ? "验证码登录" : "密码登录"}</a>
                             </Col>
                         </Row>
-
-
-                        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                        <Form.Item wrapperCol={{ offset: 7 }}>
                             <Space size={50}>
-                                <Button type="default" htmlType="reset">
+                                <Button style={{
+                                    width: "80px"
+                                }} type="default" htmlType="reset">
                                     重置
                                 </Button>
-                                <Button type="primary" htmlType="submit">
+                                <Button style={{
+                                    width: "80px"
+                                }} type="primary" htmlType="submit" loading={submitLoading} >
                                     登录
                                 </Button>
                             </Space>
                         </Form.Item>
                     </div>
                 </Form>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 

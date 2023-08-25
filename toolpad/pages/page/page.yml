@@ -5,14 +5,14 @@ spec:
   title: Default page
   content:
     - component: PageRow
+      name: pageRow1
+      children:
+        - component: DataGrid
+          name: dataGrid
+    - component: PageRow
       name: pageRow
       children:
         - component: Tabs
           name: tabs
           layout:
             horizontalAlign: center
-    - component: PageRow
-      name: pageRow1
-      children:
-        - component: DataGrid
-          name: dataGrid
