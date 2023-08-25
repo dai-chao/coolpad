@@ -43,7 +43,7 @@ function FileEditor() {
 
   const location = useLocation();
   const navigate = useNavigate();
-
+  // 页面跳转方法
   React.useEffect(() => {
     const newPathname = getPathnameFromView(currentView);
     if (newPathname !== location.pathname) {

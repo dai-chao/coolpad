@@ -124,9 +124,9 @@ const EMPTY_ARRAY: any[] = [];
 const EMPTY_OBJECT: any = {};
 
 const INITIAL_FETCH: UseFetch = {
-  call: async () => {},
-  refetch: async () => {},
-  fetch: async () => {},
+  call: async () => { },
+  refetch: async () => { },
+  fetch: async () => { },
   isLoading: false,
   isFetching: false,
   error: null,
@@ -150,8 +150,8 @@ function usePageNavigator(): NavigateToPage {
           pathname: `/pages/${pageNodeId}`,
           ...(urlParams
             ? {
-                search: urlParams.toString(),
-              }
+              search: urlParams.toString(),
+            }
             : {}),
         });
       }
@@ -243,7 +243,7 @@ function useApplicationVm(onUpdate: (registry: ApplicationVm) => void) {
     },
     registerBindingScope(bindingId: string, scope: RuntimeScope) {
       if (vm.bindingScopes[bindingId]) {
-        return () => {};
+        return () => { };
       }
       vm.bindingScopes[bindingId] = scope.id;
       scheduleUpdate();
@@ -494,9 +494,8 @@ function parseBindings(
         const parseNestedBindings = (value: unknown, parentBindingId: string) => {
           if (value && typeof value === 'object') {
             for (const [nestedPropName, nestedProp] of Object.entries(value)) {
-              const nestedBindingId = `${parentBindingId}${
-                Array.isArray(value) ? `[${nestedPropName}]` : `.${nestedPropName}`
-              }`;
+              const nestedBindingId = `${parentBindingId}${Array.isArray(value) ? `[${nestedPropName}]` : `.${nestedPropName}`
+                }`;
 
               if (nestedProp && getBindingType(nestedProp) !== 'const') {
                 parsedBindingsMap.set(nestedBindingId, parseBinding(nestedProp));
@@ -763,7 +762,7 @@ function RuntimeScoped({
   const vmRef = React.useContext(ApplicationVmApiContext);
   React.useEffect(() => {
     if (!vmRef) {
-      return () => {};
+      return () => { };
     }
     return vmRef.current.registerScope(childScope);
   }, [vmRef, childScope]);
@@ -1142,7 +1141,7 @@ function RenderedNodeContent({ node, childNodeGroups, Component }: RenderedNodeC
   const vmRef = React.useContext(ApplicationVmApiContext);
   React.useEffect(() => {
     if (!vmRef) {
-      return () => {};
+      return () => { };
     }
     const unsubscribers: (() => void)[] = [];
     for (const propName of Object.keys(argTypes)) {
@@ -1444,6 +1443,10 @@ function RenderedPages({ pages, defaultPage }: RenderedPagesProps) {
       <Route path="/pages" element={defaultPageNavigation} />
       <Route path="/" element={defaultPageNavigation} />
       <Route path="*" element={<PageNotFound />} />
+      <Route
+        path={`/pages/login`}
+        element={<div>login</div>}
+      />
     </Routes>
   );
 }

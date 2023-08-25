@@ -45,7 +45,7 @@ export default function AppNavigation({ pages, clipped = false }: AppNavigationP
           component="nav"
           subheader={
             <ListSubheader id={navListSubheaderId} sx={{ px: 4 }}>
-              Pages
+              菜单导航
             </ListSubheader>
           }
           aria-labelledby={navListSubheaderId}
