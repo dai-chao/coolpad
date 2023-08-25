@@ -9,8 +9,9 @@ import {
   ListItemText,
   Toolbar,
 } from '@mui/material';
-import { useLocation, useHref, Link } from 'react-router-dom';
+import { useLocation, useHref, Link, useNavigate } from 'react-router-dom';
 import * as appDom from '../appDom';
+import { useEffect } from 'react';
 
 const DRAWER_WIDTH = 250; // px
 
@@ -27,6 +28,17 @@ export default function AppNavigation({ pages, clipped = false }: AppNavigationP
   const activePagePath = location.pathname.replace(href, '');
 
   const navListSubheaderId = React.useId();
+  // 判断登录
+  const navigate = useNavigate();
+  useEffect(() => {
+    let token = localStorage.getItem('token')
+    if (!token) {
+      console.log(token, 'token', navigate)
+      navigate({
+        pathname: `/app/pages/login`
+      });
+    }
+  }, [])
 
   return (
     <Drawer

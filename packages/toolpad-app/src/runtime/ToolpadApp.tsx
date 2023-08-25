@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from "react"
 import {
   Stack,
   CssBaseline,
@@ -84,6 +85,9 @@ import { NavigateToPage } from './CanvasHooksContext';
 import AppNavigation from './AppNavigation';
 import PreviewHeader from './PreviewHeader';
 import useEvent from '../utils/useEvent';
+
+import Login from "../toolpad/ToolpadShell/Login/index"
+// ./ToolpadShell/Login/index
 
 const browserJsRuntime = getBrowserRuntime();
 
@@ -1414,11 +1418,16 @@ interface RenderedPagesProps {
 }
 
 function RenderedPages({ pages, defaultPage }: RenderedPagesProps) {
-  const defaultPageNavigation = <Navigate to={`/pages/${defaultPage.id}`} replace />;
+  let defaultPageNavigation = <Navigate to={`/pages/${defaultPage.id}`} replace />;
+
   return (
     <Routes>
       {pages.map((page) => (
         <React.Fragment key={page.id}>
+          <Route
+            path={`/app/pages/login`}
+            element={<div><Login /></div>}
+          />
           <Route
             path={`/pages/${page.id}`}
             element={
@@ -1440,13 +1449,13 @@ function RenderedPages({ pages, defaultPage }: RenderedPagesProps) {
           />
         </React.Fragment>
       ))}
+      {/* <Route
+        path={`/app/pages/login`}
+        element={<div>login</div>}
+      /> */}
       <Route path="/pages" element={defaultPageNavigation} />
       <Route path="/" element={defaultPageNavigation} />
       <Route path="*" element={<PageNotFound />} />
-      <Route
-        path={`/pages/login`}
-        element={<div>login</div>}
-      />
     </Routes>
   );
 }
@@ -1490,6 +1499,7 @@ export interface ToolpadAppLayoutProps {
 }
 
 function ToolpadAppLayout({ dom, hasShell: hasShellProp = true }: ToolpadAppLayoutProps) {
+
   const root = appDom.getApp(dom);
   const { pages = [] } = appDom.getChildNodes(dom, root);
 

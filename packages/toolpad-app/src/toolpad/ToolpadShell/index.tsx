@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { styled } from '@mui/material';
 import Header from './Header';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export interface ToolpadShellProps {
   actions?: React.ReactNode;
@@ -23,6 +25,20 @@ const ViewPort = styled('div')({
 });
 
 export default function ToolpadShell({ children, ...props }: ToolpadShellProps) {
+
+  // 判断登录
+  const navigate = useNavigate();
+  useEffect(() => {
+    let token = localStorage.getItem('token')
+    if (!token) {
+      console.log(token, 'token', navigate)
+      navigate({
+        pathname: `/app/pages/login`
+      });
+    }
+  }, [])
+
+
   return (
     <ToolpadShellRoot>
       <Header {...props} />

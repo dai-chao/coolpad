@@ -1,11 +1,13 @@
 import { CircularProgress, Box, styled, CssBaseline } from '@mui/material';
 import * as React from 'react';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import NoSsr from '../components/NoSsr';
 import AppEditor from './AppEditor';
 import ErrorAlert from './AppEditor/PageEditor/ErrorAlert';
 import { ThemeProvider } from '../ThemeContext';
+
+import Login from "./ToolpadShell/Login/index"
 
 const Centered = styled('div')({
   height: '100%',
@@ -54,6 +56,10 @@ export default function Toolpad({ basename }: ToolpadProps) {
             <React.Suspense fallback={<FullPageLoader />}>
               <BrowserRouter basename={basename}>
                 <Routes>
+                  <Route
+                    path={`/app/pages/login`}
+                    element={<Login />}
+                  />
                   <Route path="/*" element={<AppEditor />} />
                 </Routes>
               </BrowserRouter>
